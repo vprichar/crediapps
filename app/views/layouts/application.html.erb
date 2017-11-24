@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AngularRails</title>
+  <title>tienda</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body data-ng-app="NotesApp">
+<nav>
+<div class="nav-wrapper">
+  <a href="#" class="brand-logo right">Logo</a>
+  <!-- Dropdown Trigger -->
+  <a class='dropdown-button btn' href='javascript:void(0);' data-activates='demoDropdown' dropdown data-hover="true">
+  Inicio
+  </a>
+  
+  <!-- Dropdown Structure -->
+  <ul id='demoDropdown' class='dropdown-content'>
+      <li><a href="javascript:void(0);">Ventas</a></li>
+      <li><a href="javascript:void(0);">Clientes</a></li>
+      <li><a href="/furnitures">Articulo</a></li>
+      <li><a href="javascript:void(0);">Configuración</a></li>
+  </ul>
+</div>
+</nav>
 
 <%= yield %>
 

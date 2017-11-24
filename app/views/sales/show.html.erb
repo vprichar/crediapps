@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Payment:</strong>
+  <%= @sale.payment_id %>
+</p>
+
+<p>
+  <strong>Toal:</strong>
+  <%= @sale.toal %>
+</p>
+
+<p>
+  <strong>Encganche:</strong>
+  <%= @sale.encganche %>
+</p>
+
+<p>
+  <strong>Bonificacion:</strong>
+  <%= @sale.bonificacion %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @sale.status %>
+</p>
+
+<%= link_to 'Edit', edit_sale_path(@sale) %> |
+<%= link_to 'Back', sales_path %>

@@ -1,0 +1,45 @@
+
+<div class="container" data-ng-controller="NotesCtrl">
+  <div class="right-align">
+    <a class="waves-effect waves-light btn" href="/furnitures/new"><i class="material-icons left">save</i>Nuevo articulo</a>
+  </div>
+  <div class="row">
+    <div class="col l12">
+      <div class="card">
+        <div class="card-content">
+        <span class="card-title">Artículos registrados</span>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+              <% @furnitures.each do |furniture| %>
+                <tr>
+                  <td><%= furniture.name %></td>
+                  <td><%= furniture.description %></td>
+                  <td><%= furniture.price %></td>
+                  <td>
+                    <a class='dropdown-button btn' href='#' data-activates='dropdown1'>actions</a>
+                      <!-- Dropdown Structure -->
+                      <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="furnitures/<%= furniture.id%>"><i class="material-icons">visibility</i>Ver</a></li>
+                        <li><a href="furnitures/<%= furniture.id%>/edit"><i class="material-icons">create</i>Editar</a></li>
+                        <li><%= link_to 'Eliminar', furniture, method: :delete, data: { confirm: '¿Estás seguro?' } %></li>
+                      </ul>
+
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col l12">
+    <div class="card">
+      <div class="card-content">
+        <%= form_for(@furniture) do |f| %>
+          <% if @furniture.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@furniture.errors.count, "error") %> prohibited this furniture from being saved:</h2>
+      
+              <ul>
+              <% @furniture.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="field">
+            <%= f.label :barcode %><br>
+            <%= f.text_field :barcode %>
+          </div>
+          <div class="field">
+            <%= f.label :name %><br>
+            <%= f.text_field :name %>
+          </div>
+          <div class="field">
+            <%= f.label :description %><br>
+            <%= f.text_area :description %>
+          </div>
+          <div class="field">
+            <%= f.label :price %><br>
+            <%= f.text_field :price %>
+          </div>
+          <div class="field">
+            <%= f.label :cost_price %><br>
+            <%= f.text_field :cost_price %>
+          </div>
+          <div class="card-action right-align">
+            <a class="waves-effect waves-light btn" href="/furnitures">
+              <i class="material-icons left">reply</i>
+              Regresar
+            </a>
+            <%= f.submit 'Guardar', :class => 'waves-effect waves-light btn' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

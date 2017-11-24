@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Barcode:</strong>
+  <%= @furniture.barcode %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @furniture.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @furniture.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @furniture.price %>
+</p>
+
+<p>
+  <strong>Cost price:</strong>
+  <%= @furniture.cost_price %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @furniture.status %>
+</p>
+
+<%= link_to 'Edit', edit_furniture_path(@furniture) %> |
+<%= link_to 'Back', furnitures_path %>

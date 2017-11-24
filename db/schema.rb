@@ -11,9 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20171124215825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "furnitures", force: true do |t|
+    t.string   "barcode"
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "price",       precision: 8, scale: 2
+    t.decimal  "cost_price",  precision: 8, scale: 2
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "line_items", force: true do |t|
+    t.integer  "furniture_id"
+    t.integer  "quantity"
+    t.decimal  "price"
+    t.decimal  "total_price"
+    t.integer  "sale_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", force: true do |t|
+    t.integer  "sale_id"
+    t.decimal  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sales", force: true do |t|
+    t.integer  "payment_id"
+    t.integer  "toal"
+    t.integer  "encganche"
+    t.integer  "bonificacion"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
