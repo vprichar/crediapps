@@ -1,3 +1,3 @@
 class Furniture < ActiveRecord::Base
-    has_many   :line_items
+    has_many   :lineFurniture
 end

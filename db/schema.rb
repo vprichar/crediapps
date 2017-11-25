@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124215825) do
+ActiveRecord::Schema.define(version: 20171125035424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clients", force: true do |t|
+    t.string   "name"
+    t.string   "rfc"
+    t.string   "phone"
+    t.string   "email"
+    t.integer  "sale_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "furnitures", force: true do |t|
     t.string   "barcode"
@@ -27,11 +37,10 @@ ActiveRecord::Schema.define(version: 20171124215825) do
     t.datetime "updated_at"
   end
 
-  create_table "line_items", force: true do |t|
+  create_table "line_furnitures", force: true do |t|
     t.integer  "furniture_id"
     t.integer  "quantity"
     t.decimal  "price"
-    t.decimal  "total_price"
     t.integer  "sale_id"
     t.datetime "created_at"
     t.datetime "updated_at"
