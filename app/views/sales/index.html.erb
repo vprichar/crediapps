@@ -29,8 +29,8 @@
               <% @sales.each do |sale| %>
                 <tr class="table-lik" onclick="document.location = 'sales/<%= sale.id %>';">
                   <td><%= sale.id %></td>
-                  <td><%= sale.client %></td>
-                  <td><%= sale.client %></td>
+                  <td><%= sale.client.id%></td>
+                  <td><%= sale.client.name %></td>
                   <td><%= sale.toal %></td>
                   <td><%= sale.status %></td>
                 </tr>

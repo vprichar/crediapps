@@ -69,6 +69,6 @@ class ConfiguracionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def configuracion_params
-      params.require(:configuracion).permit(:financing_rate, :Deadline)
+      params.require(:configuracion).permit(:financing_rate, :deadline, :hitch)
     end
 end

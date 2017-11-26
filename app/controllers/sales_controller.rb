@@ -12,14 +12,14 @@ class SalesController < ApplicationController
   end
 
   def add_item
-    configuracion =Configuracion.last
     set_sale = Sale.find(params[:saleid])
+    configuracion =set_sale.configuracion
     @furniture = Furniture.find(params[:id])
     item = @furniture
     existing_line__furniture = LineFurniture.where("furniture_id = ? AND sale_id = ?", item.id, set_sale.id).first 
     if  existing_line__furniture.blank?
       line_new = LineFurniture.new(:furniture_id=> item.id, :sale_id => set_sale.id, :quantity => 1)
-      line_new.price = line_new.furniture.price * (1 + (configuracion.financing_rate * configuracion.Deadline) /100)
+      line_new.price = line_new.furniture.price * (1 + (configuracion.financing_rate * configuracion.deadline) /100)
       line_new.save
       update_line_furniture_totals(line_new)
       update_sale(line_new)
@@ -34,18 +34,17 @@ class SalesController < ApplicationController
   end
 
   def update_sale(lineFurniture)
-    configuracion =Configuracion.last
     set_sale = Sale.find(lineFurniture.sale_id)
-    hitch = 20
+    configuracion =set_sale.configuracion
+    hitch = configuracion.hitch
     set_sale.encganche = (hitch / 100.to_f) * lineFurniture.total_price
-    set_sale.bonificacion = set_sale.encganche * ((configuracion.financing_rate * configuracion.Deadline ) /100)
+    set_sale.bonificacion = set_sale.encganche * ((configuracion.financing_rate * configuracion.deadline ) /100)
     set_sale.toal=lineFurniture.total_price - set_sale.encganche - set_sale.bonificacion
     set_sale.save
   end
 
 
   def update_line_furniture_totals(line_item)
-    configuracion =Configuracion.last
     line_item.total_price = line_item.price * line_item.quantity
     line_item.save
   end
@@ -71,10 +70,9 @@ class SalesController < ApplicationController
   def getDeadlines
     months = [3,6,9,12]
     result = []
-    configuracion =Configuracion.last
     set_sale
-    counted = set_sale.toal.to_f / (1 + (configuracion.financing_rate * configuracion.Deadline) /100)
-    #plazo = contado.to_f * (1 + (configuracion.financing_rate * 3) / 100) 
+    configuracion = set_sale.configuracion
+    counted = set_sale.toal.to_f / (1 + (configuracion.financing_rate * configuracion.deadline) /100) 
     months.each do |p|
       term = counted.to_f * (1 + (configuracion.financing_rate * p) / 100)
       payment = term / p.to_f
@@ -84,9 +82,15 @@ class SalesController < ApplicationController
     render json: result
   end
 
+  def selecDeadlines
+    set_sale = Sale.find(params[:id])
+    deadlinesId = params[:deadlinesId]
+    set_sale.term = deadlinesId
+    set_sale.status= true
+    set_sale.save
+    render json:  set_sale
+  end
 
-
-  
 
   
   # GET /sales
@@ -103,6 +107,7 @@ class SalesController < ApplicationController
   # GET /sales/new
   def new
     @sale = Sale.create
+    @sale.configuracion = Configuracion.last
     @sale.save
     redirect_to :controller => 'sales', :action => 'edit', :id => @sale.id
   end

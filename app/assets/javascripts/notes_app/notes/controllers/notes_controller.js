@@ -83,6 +83,18 @@ notesApp.controller('NotesCtrl', function($scope, $http, $location, $filter) {
      });
    }
 
+   function deadlinesId(deadlinesId) {
+    var idSale = $location.$$absUrl.split("/")[4]
+     $http.get('/sales/selecDeadlines?id='+idSale+'&deadlinesId='+deadlinesId)
+     .then(function(response) {
+       console.log(response);
+       window.location.href = "/sales";
+     });
+   }
+
+   $scope.saveNex = function() {
+     deadlinesId($scope.fertilizer.selectedDeadlines.numero);
+   }
 
   $scope.saleNex = function() {
     if(!$scope.selected.client){
