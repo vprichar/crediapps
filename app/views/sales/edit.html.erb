@@ -1,6 +1,127 @@
-<h1>Editing sale</h1>
+<div class="container" data-ng-controller="NotesCtrl">
+<div class="row">
+	<div class="col l12">
+		<div class="card">
+			<div class="card-content">
+				<div class="row">
+					<div class="col l12 center-align">Reguistro de venta</div>
+					<div class="col l12 right-align">Folio: <%= @sale.id %> </div>
+					<div class="col l12">
+						<div class="col l8">
+							<div class="input-field col s12">
+								<angucomplete id="ex1"
+													placeholder="Clientes"
+													pause="100"
+													selectedobject="selected.client"
+													url="/sales/clientsSearch?name="
+													searchfields="name"
+													titlefield="name"
+													minlength="3"
+													inputclass="form-control form-control-small"/>
 
-<%= render 'form' %>
+							</div>
+						</div>
+						<div class="col l4" ng-if="selected.client">
+							RFC de cliente: {{selected.client.originalObject.rfc}}
+						</div>
+						<div class="col l8">
+							<div class="input-field col s12">
+								<angucomplete id="productoIput"
+															placeholder="Productos"
+															pause="100"
+															selectedobject="selected.furnishing"
+															url="/sales/furnitureSearch?queri="
+															searchfields="name"
+															titlefield="name"
+															minlength="3"
+															inputclass="form-control form-control-small"/>
+															</div>
+						</div>
+						<div class="col l4">
+							<a class="waves-effect waves-light btn" 
+								 ng-class="selected.furnishing ? '' : 'disabled'"
+								 ng-click="addfurnishing(selected.furnishing)">
+								<i class="material-icons left">shopping_cart</i>
+							</a>
+						</div>
+					</div>
+					<div class="tabla col l12">
+						<table>
+							<thead>
+								<tr>
+									<th>Descrion  Aticulo</th>
+									<th>Modelo</th>
+									<th>Cantidad</th>
+									<th>Precio</th>
+									<th>Importe</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in listado.lineFurnitures">
+									<td>{{x.furniture_id.description}}</td>
+									<td>{{x.furniture_id.description}}</td>
+									<td>{{x.quantity}}</td>
+									<td>{{x.price}}</td>
+									<td>{{x.total_price}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-<%= link_to 'Show', @sale %> |
+					<div class="col l12 pagos">
+						<div class="col s4 offset-s8 pago-content right-align">
+							<div class="col l12"> 
+								<div class="col l6 pago-tile">Enganche:</div>
+								<div class="col l6">${{listado.sale.encganche}}</div>
+							</div>
+							<div class="col l12 pago-content"> 
+								<div class="col l6 pago-tile">Bonificacion:</div>
+								<div class="col l6">${{listado.sale.bonificacion}}</div>
+							</div>
+							<div class="col l12 pago-content"> 
+								<div class="col l6 pago-tile">Total:</div>
+								<div class="col l6">${{listado.sale.toal}}</div>
+							</div>
+						</div>
+					</div>
+		
+					<div class="plazos col l12" ng-if="fertilizer.assets">
+						<table class="striped">
+							<thead>
+								<tr>
+									<th colspan="5" class="center-align abnos-table">Abonos Mensuales</th>
+								</tr>
+							</thead>
+			
+							<tbody>
+								<tr ng-repeat="deadlines in fertilizer.deadlines">
+									<td>{{deadlines.numero}} abonos de </td>
+									<td>{{deadlines.pago | currency}}</td>
+									<td>Total a pagar de {{deadlines.total | currency}}</td>
+									<td>se ahorra ${{deadlines.ahorra | currency}}</td>
+									<td> <input name="deadline" type="radio" id="{{deadlines.numero}}"  ng-model="confirmed" ng-checked="selecDeadlines(deadlines)" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="col s6 offset-s6 pago-content right-align">
+						<div class="col l6 ">
+							<a class="waves-effect waves-light btn" >
+							Cancelar
+							</a>
+						</div >
+						<div class="col l6">
+							<a class="waves-effect waves-light btn " ng-click="saleNex()" ng-if="!fertilizer.assets">Siguiente</a>
+							<a class="waves-effect waves-light btn " ng-click="saleNex()" ng-if="fertilizer.assets">Guardar</a>
+						</div >
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
 <%= link_to 'Back', sales_path %>

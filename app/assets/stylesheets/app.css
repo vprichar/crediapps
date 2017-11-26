@@ -48,3 +48,54 @@
    .color-tex {
       color: #6b6a6a;
    }
+
+   .table-lik {
+    cursor: pointer;
+   }
+
+   .table-lik:hover { 
+    background-color: rgb(231, 231, 231);
+   }
+
+   .menu-top {
+    padding-top: 20px !important; ;
+   }
+
+   .abnos-table {
+    background: #b1dcfb;
+   }
+
+   .pagos {
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    margin: 20px 0 20px 0;
+   }
+
+   .plazos {
+    padding: 0px !important;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    margin: 20px 0 20px 0;
+   }
+
+   .pago-tile {
+    background: #bdbcb8;
+    border-radius: 6px;
+   }
+
+   .pago-content {
+    margin-top: 6px !important;
+   }
+
+   [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: relative;
+    pointer-events: none;
+    opacity: 1 !important; 
+    pointer-events: all;
+   }
+
+   [type="radio"]:not(:checked), [type="radio"]:checked {
+      position: absolute;
+      opacity: 1;
+      pointer-events: auto;
+   }

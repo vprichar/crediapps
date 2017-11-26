@@ -5,6 +5,7 @@ class CreateSales < ActiveRecord::Migration
       t.integer :toal
       t.integer :encganche
       t.integer :bonificacion
+      t.integer :term
       t.boolean :status
       t.timestamps
     end

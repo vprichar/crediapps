@@ -1,5 +1,117 @@
-<h1>New sale</h1>
 
-<%= render 'form' %>
+<div class="container" data-ng-controller="NotesCtrl">
+	<div class="row">
+		<div class="col l12">
+			<div class="card">
+				<div class="card-content">
+					<div class="row">
+						<div class="col l12 center-align">Reguistro de venta</div>
+						<div class="col l12 right-align">Folio </div>
+						<div class="col l12">
+							<div class="col l8">
+								<div class="input-field col s12">
+									<angucomplete id="ex1"
+														placeholder="Clientes"
+														pause="100"
+														selectedobject="selected.client"
+														url="/sales/clientsSearch?name="
+														searchfields="name"
+														titlefield="name"
+														minlength="3"
+														inputclass="form-control form-control-small"/>
+
+								</div>
+							</div>
+							<div class="col l4" ng-if="selected.client">
+						    RFC de cliente: {{selected.client.originalObject.rfc}}
+							</div>
+							<div class="col l8">
+								<div class="input-field col s12">
+									<angucomplete id="productoIput"
+																placeholder="Productos"
+																pause="100"
+																selectedobject="selected.furnishing"
+																url="/sales/furnitureSearch?queri="
+																searchfields="name"
+																titlefield="name"
+																minlength="3"
+																inputclass="form-control form-control-small"/>
+																</div>
+							</div>
+							<div class="col l4">
+								<a class="waves-effect waves-light btn" 
+									 ng-class="selected.furnishing ? '' : 'disabled'"
+									 ng-click="addfurnishing(selected.furnishing)">
+									<i class="material-icons left">shopping_cart</i>
+								</a>
+						  </div>
+						</div>
+						<div class="tabla col l12">
+						{{listado}}
+							<table>
+								<thead>
+									<tr>
+											<th>Descrion  Aticulo</th>
+											<th>Modelo</th>
+											<th>Cantidad</th>
+											<th>Precio</th>
+											<th>Importe</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Pollo</td>
+										<td>Eclair</td>
+										<td>$0.87</td>
+										<td>$0.87</td>
+										<td>$0.87</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="col l12 pagos">
+							<div class="col s4 offset-s8 pago-content right-align">
+								<div class="col l12"> 
+									<div class="col l6 pago-tile">Enganche:</div>
+									<div class="col l6">1300</div>
+								</div>
+								<div class="col l12 pago-content"> 
+									<div class="col l6 pago-tile">Enganche:</div>
+									<div class="col l6">1300</div>
+								</div>
+								<div class="col l12 pago-content"> 
+									<div class="col l6 pago-tile">Enganche:</div>
+									<div class="col l6">1300</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="plazos col l12">
+							<table class="striped">
+								<thead>
+									<tr>
+									  <th colspan="4" class="center-align abnos-table">Abonos Mensuales</th>
+									</tr>
+								</thead>
+				
+								<tbody>
+									<tr>
+										<td>3 abonos de </td>
+										<td>$400</td>
+										<td>Total a pagar de 300</td>
+										<td>se aorra $400</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <%= link_to 'Back', sales_path %>

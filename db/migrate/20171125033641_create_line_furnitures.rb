@@ -5,6 +5,7 @@ class CreateLineFurnitures < ActiveRecord::Migration
       t.integer :quantity
       t.decimal :price
       t.integer :sale_id
+      t.decimal :total_price
       t.timestamps
     end
   end

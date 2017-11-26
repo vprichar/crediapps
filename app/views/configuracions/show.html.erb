@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Financing rate:</strong>
+  <%= @configuracion.financing_rate %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @configuracion.Deadline %>
+</p>
+
+<%= link_to 'Edit', edit_configuracion_path(@configuracion) %> |
+<%= link_to 'Back', configuracions_path %>
