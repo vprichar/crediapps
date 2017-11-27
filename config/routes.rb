@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :furnitures
 
   get 'angular/show'
-  root 'angular#show'
+  root 'sales#index'
 
   resources :sales do
     collection do
