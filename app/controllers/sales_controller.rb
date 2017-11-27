@@ -96,7 +96,7 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.all
+    @sales = Sale.where( :status => true)
   end
 
   # GET /sales/1
@@ -152,11 +152,11 @@ class SalesController < ApplicationController
   # DELETE /sales/1
   # DELETE /sales/1.json
   def destroy
-    @sale.destroy
-    respond_to do |format|
-      format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
-      format.json { head :no_content }
+    @sale = Sale.find(params[:id])
+    if @sale.present?
+      @sale.status= false
     end
+    redirect_to root_url
   end
 
   private
