@@ -1,11 +1,15 @@
+<script> 
+
+
+</script> 
 <div class="container" data-ng-controller="NotesCtrl">
 <div class="row">
 	<div class="col l12">
 		<div class="card">
 			<div class="card-content">
 				<div class="row">
-					<div class="col l12 center-align">Reguistro de venta</div>
-					<div class="col l12 right-align">Folio: <%= @sale.id %> </div>
+					<div class="col l12 center-align titulo-venta">Registro de venta</div>
+					<div class="col l12 right-align folio-venta">Folio: <%= @sale.id %> </div>
 					<div class="col l12">
 						<div class="col l8">
 							<div class="input-field col s12">
@@ -21,7 +25,7 @@
 
 							</div>
 						</div>
-						<div class="col l4" ng-if="selected.client">
+						<div class="col l4 folio" ng-if="selected.client">
 							RFC de cliente: {{selected.client.originalObject.rfc}}
 						</div>
 						<div class="col l8">
@@ -37,7 +41,7 @@
 															inputclass="form-control form-control-small"/>
 															</div>
 						</div>
-						<div class="col l4">
+						<div class="col l4 add-cart">
 							<a class="waves-effect waves-light btn" 
 								 ng-class="selected.furnishing ? '' : 'disabled'"
 								 ng-click="addfurnishing(selected.furnishing)">
@@ -107,7 +111,7 @@
 
 					<div class="col s6 offset-s6 pago-content right-align">
 						<div class="col l6 ">
-							<a class="waves-effect waves-light btn" >
+							<a class="waves-effect waves-light btn"  href="/sales">
 							Cancelar
 							</a>
 						</div >
@@ -123,5 +127,3 @@
 	</div>
 </div>
 </div>
-
-<%= link_to 'Back', sales_path %>

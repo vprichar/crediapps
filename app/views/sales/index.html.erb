@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" data-ng-controller="NotesCtrl">
   
   <div class="row">
     <div class="col s12 right-align menu-top"> 
-      <a href="sales/new" class="waves-effect waves-light btn">
+      <a href="/sales/new" class="waves-effect waves-light btn">
         <i class="material-icons left">note_add</i>
         Nueva venta
       </a>
@@ -29,8 +29,8 @@
               <% @sales.each do |sale| %>
                 <tr class="table-lik" onclick="document.location = 'sales/<%= sale.id %>';">
                   <td><%= sale.id %></td>
-                  <td><%= sale.client.id%></td>
-                  <td><%= sale.client.name %></td>
+                  <td><%= sale.client%></td>
+                  <td><%= sale.client %></td>
                   <td><%= sale.toal %></td>
                   <td><%= sale.status %></td>
                 </tr>

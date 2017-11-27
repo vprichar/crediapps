@@ -1,5 +1,6 @@
 
 notesApp.controller('NotesCtrl', function($scope, $http, $location, $filter) {
+  console.log("done");
   $('.dropdown-button').dropdown({
     inDuration: 300,
     outDuration: 225,
@@ -10,13 +11,11 @@ notesApp.controller('NotesCtrl', function($scope, $http, $location, $filter) {
     alignment: 'left', // Displays dropdown with edge aligned to the left of button
     stopPropagation: false // Stops event propagation
   });
-
-   console.log('pollo',$location.$$absUrl.split("/")[4]);
   $scope.selected={
     client:null,
     furnishing: null,
   };
-  
+
   $scope.listado ={
     furnitures:[]
   };
@@ -25,7 +24,6 @@ notesApp.controller('NotesCtrl', function($scope, $http, $location, $filter) {
     assets:false,
     deadlines:[],
     selectedDeadlines:{}
-    
   };
 
   function getListado() {
@@ -45,18 +43,16 @@ notesApp.controller('NotesCtrl', function($scope, $http, $location, $filter) {
     });
   }
 
-
   $scope.showdetails = function(fish_id) {
     var found = $filter('filter')($scope.listado.furnitures, {id: fish_id}, true);
     if (found.length) {
-        $scope.selected = JSON.stringify(found[0]);
+      $scope.selected = JSON.stringify(found[0]);
     } else {
-        $scope.selected = 'Not found';
+      $scope.selected = 'Not found';
     }
-}
+  }
 
   function addItem(furnishing) {
-   console.log(furnishing.originalObject.id, 'en la funcion');
    var id = furnishing.originalObject.id;
    var idSale = $location.$$absUrl.split("/")[4]
     $http.get('/sales/add_item?id='+1+'&saleid='+idSale)
@@ -122,20 +118,11 @@ notesApp.controller('NotesCtrl', function($scope, $http, $location, $filter) {
       $scope.invited.splice(toDel);
     }
   }
-    
-
-
-
-getListado();
-  
-  
-$scope.greeting = 'hello world';
-$scope.addfurnishing = function (furnishing) {
-  var name = angular.element($('#productoIput_value'));
-  document.getElementById('productoIput_value').value='';
-  addItem(furnishing);
-};
-
-
-
+  getListado();
+  $scope.greeting = 'hello world';
+  $scope.addfurnishing = function (furnishing) {
+    var name = angular.element($('#productoIput_value'));
+    document.getElementById('productoIput_value').value='';
+    addItem(furnishing);
+  };
 });
